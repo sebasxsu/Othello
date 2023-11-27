@@ -23,17 +23,17 @@ import javax.swing.SwingUtilities;
  */
 
 public class Othello extends JPanel implements MouseListener {
-	static int[][] data = new int[6][6];
-	static int gameSizeInt = 6;
+	static int[][] data = new int[8][8];
+	static int gameSizeInt = 8;
 	static JPanel panel = new JPanel();
 	static int turn = 2;
-	static int black = 0;
-	static int white = 0;
-	static int frei = 0;
-	static int blue = 0;
+	static int Negro = 0;
+	static int Blanco = 0;
+	static int vacia = 0;
+	static int Azul = 0;
 	static int fontX = 10;
-	static int fontY = 375;
-	static int noblue = 0;
+	static int fontY = 498;
+	static int noAzul = 0;
 	static boolean noOneWin = false;
 
 	//menu
@@ -41,15 +41,15 @@ public class Othello extends JPanel implements MouseListener {
 		JFrame frame = new JFrame();
 		frame.setTitle("Othello");
 		frame.setLocationRelativeTo(null);
-		frame.setLocation(450, 150);
-		panel.setPreferredSize(new Dimension(361, 385));
+		frame.setLocation(390, 80);
+		panel.setPreferredSize(new Dimension(481, 505));
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setResizable(false);
 		frame.getContentPane().setBackground(new Color(18, 199, 24));
 
 		//menubar
 		JMenuBar menuBar = new JMenuBar();
-		JMenu file = new JMenu("File");
+		JMenu file = new JMenu("Opciones");
 		JMenuItem newGame = new JMenuItem("Nuevo Juego");
 		JCheckBoxMenuItem help = new JCheckBoxMenuItem("Ayuda");
 		JMenuItem exitGame = new JMenuItem("Cerrar Juego");
@@ -59,14 +59,7 @@ public class Othello extends JPanel implements MouseListener {
 		help.setSelected(true);
 		file.addSeparator();
 		file.add(exitGame);
-		JMenu gameSize = new JMenu("Tamaño");
-		JMenuItem x6 = new JMenuItem("6X6");
 		JMenuItem x8 = new JMenuItem("8X8");
-		JMenuItem x10 = new JMenuItem("10X10");
-		menuBar.add(gameSize);
-		gameSize.add(x6);
-		gameSize.add(x8);
-		gameSize.add(x10);
 		newGame.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				data = new int[gameSizeInt][gameSizeInt];
@@ -89,22 +82,7 @@ public class Othello extends JPanel implements MouseListener {
 			}
 
 		});
-		x6.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				gameSizeInt = 6;
-				fontX = 10;
-				fontY = 375;
-				frame.setLocation(450, 150);
-				frame.setSize(367, 437);
-				frame.setPreferredSize(new Dimension(361, 385));
-				data = new int[6][6];
-				turn = 2;
-				start();
-				count();
-				panel.repaint();
-			}
-
-		});
+		
 		x8.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				gameSizeInt = 8;
@@ -121,22 +99,7 @@ public class Othello extends JPanel implements MouseListener {
 			}
 
 		});
-		x10.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				gameSizeInt = 10;
-				fontX = 10;
-				fontY = 617;
-				frame.setLocation(330, 30);
-				frame.setSize(607, 677);
-				frame.setPreferredSize(new Dimension(601, 625));
-				data = new int[10][10];
-				turn = 2;
-				start();
-				count();
-				panel.repaint();
-			}
-
-		});
+		
 
 		panel = new JPanel() {
 			@Override
@@ -144,7 +107,7 @@ public class Othello extends JPanel implements MouseListener {
 				super.paintComponent(g);
 				for (int i = 0; i < gameSizeInt; i++)
 					for (int j = 0; j < gameSizeInt; j++) {
-						g.setColor(new Color(18, 199, 24));
+						g.setColor(new Color(61, 153, 111));
 						g.fillRect(j * 60, i * 60, 60, 60);
 						g.setColor(Color.black);
 						g.drawRect(j * 60, i * 60, 60, 60);
@@ -175,19 +138,19 @@ public class Othello extends JPanel implements MouseListener {
 				}
 				g.setColor(Color.BLACK);
 				g.setFont(new Font("Courier New", Font.BOLD, 15));
-				if (frei == 0) {
-					if (black > white) {
-						g.drawString("Negro gana     Negro = " + black + "  Blanco = " + white, fontX, fontY);
-					} else if (black == white || noOneWin) {
-						g.drawString("Nadie gana     Negro = " + black + "  Blanco = " + white, fontX, fontY);
+				if (vacia == 0) {
+					if (Negro > Blanco) {
+						g.drawString("Negro gana     Negro = " + Negro + "  Blanco = " + Blanco, fontX, fontY);
+					} else if (Negro == Blanco || noOneWin) {
+						g.drawString("Nadie gana     Negro = " + Negro + "  Blanco = " + Blanco, fontX, fontY);
 					} else {
-						g.drawString("Blanco gana     Negro = " + black + "  Blanco = " + white, fontX, fontY);
+						g.drawString("Blanco gana     Negro = " + Negro + "  Blanco = " + Blanco, fontX, fontY);
 					}
 				} else {
 					if (turn == 1) {
-						g.drawString("Turno negro     negro = " + black + "  blanco = " + white, fontX, fontY);
+						g.drawString("Turno negro     negro = " + Negro + "  blanco = " + Blanco, fontX, fontY);
 					} else {
-						g.drawString("Turno blanco     negro = " + black + "  blanco = " + white, fontX, fontY);
+						g.drawString("Turno blanco     negro = " + Negro + "  blanco = " + Blanco, fontX, fontY);
 					}
 				}
 			}
@@ -219,7 +182,7 @@ public class Othello extends JPanel implements MouseListener {
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
 			public void run() {
-				new Reversi();
+				new Othello();
 			}
 		});
 	}
@@ -289,21 +252,21 @@ public class Othello extends JPanel implements MouseListener {
 			}
 		}
 		count();
-		if (blue == 0 && frei != 0) {
-			noblue++;
+		if (Azul == 0 && vacia != 0) {
+			noAzul++;
 			if (turn == 1) {
 				turn = 2;
 			} else {
 				turn = 1;
 			}
-			if (noblue > 1) {
+			if (noAzul > 1) {
 				noOneWin = true;
 			}
 			if (!noOneWin) {
 				help();
 			}
 		} else {
-			noblue = 0;
+			noAzul = 0;
 		}
 
 	}
@@ -795,23 +758,23 @@ public class Othello extends JPanel implements MouseListener {
 	 * Contar cuantas piezas hay 
 	 */
 	static void count() {
-		black = 0;
-		white = 0;
-		frei = 0;
-		blue = 0;
+		Negro = 0;
+		Blanco = 0;
+		vacia = 0;
+		Azul = 0;
 		for (int i = 0; i < data.length; i++) {
 			for (int j = 0; j < data[i].length; j++) {
 				if (data[i][j] == 1) {
-					black++;
+					Negro++;
 				}
 				if (data[i][j] == 2) {
-					white++;
+					Blanco++;
 				}
 				if (data[i][j] == 0) {
-					frei++;
+					vacia++;
 				}
 				if (data[i][j] == -1) {
-					blue++;
+					Azul++;
 				}
 			}
 		}
