@@ -59,7 +59,6 @@ public class Othello extends JPanel implements MouseListener {
 		help.setSelected(true);
 		file.addSeparator();
 		file.add(exitGame);
-		JMenuItem x8 = new JMenuItem("8X8");
 		newGame.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				data = new int[gameSizeInt][gameSizeInt];
@@ -79,23 +78,6 @@ public class Othello extends JPanel implements MouseListener {
 		exitGame.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.exit(0);
-			}
-
-		});
-		
-		x8.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				gameSizeInt = 8;
-				fontX = 10;
-				fontY = 498;
-				frame.setLocation(390, 80);
-				frame.setPreferredSize(new Dimension(481, 505));
-				frame.setSize(487, 557);
-				data = new int[8][8];
-				turn = 2;
-				start();
-				count();
-				panel.repaint();
 			}
 
 		});
