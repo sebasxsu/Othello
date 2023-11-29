@@ -1,4 +1,5 @@
 package Presentacion;
+
 import java.awt.Color;
 
 import java.awt.Dimension;
@@ -16,11 +17,10 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
+import java.awt.Menu;
 
-/**
- * Othello 
- *
- */
+import Logica.OthelloFrame;
+import Logica.OthelloMenu;
 
 public class Othello extends JPanel implements MouseListener {
 	static int[][] data = new int[8][8];
@@ -36,7 +36,7 @@ public class Othello extends JPanel implements MouseListener {
 	static int noAzul = 0;
 	static boolean noOneWin = false;
 
-	//menu
+	// menu
 	public Othello() {
 		JFrame frame = new JFrame();
 		frame.setTitle("Othello");
@@ -47,7 +47,7 @@ public class Othello extends JPanel implements MouseListener {
 		frame.setResizable(false);
 		frame.getContentPane().setBackground(new Color(18, 199, 24));
 
-		//menubar
+		// menubar
 		JMenuBar menuBar = new JMenuBar();
 		JMenu file = new JMenu("Opciones");
 		JMenuItem newGame = new JMenuItem("Nuevo Juego");
@@ -81,7 +81,6 @@ public class Othello extends JPanel implements MouseListener {
 			}
 
 		});
-		
 
 		panel = new JPanel() {
 			@Override
@@ -139,26 +138,25 @@ public class Othello extends JPanel implements MouseListener {
 
 			@Override
 			public Dimension getPreferredSize() {
-				if (gameSizeInt == 6) {
-					return new Dimension(361, 385);
-				} else if (gameSizeInt == 8) {
+				if (gameSizeInt == 8) {
 					return new Dimension(481, 505);
 				} else {
 					return new Dimension(601, 625);
 				}
 			}
+
 		};
 
 		frame.add(panel);
 		frame.setJMenuBar(menuBar);
 		panel.addMouseListener(this);
 		frame.pack();
-		
+
 		frame.setVisible(true);
 
 	}
 
-//main
+	// main
 	public static void main(String[] args) {
 		start();
 		SwingUtilities.invokeLater(new Runnable() {
@@ -169,7 +167,6 @@ public class Othello extends JPanel implements MouseListener {
 		});
 	}
 
-	
 	static void start() {
 		data[(gameSizeInt / 2) - 1][(gameSizeInt / 2) - 1] = 1;
 		data[gameSizeInt / 2][(gameSizeInt / 2) - 1] = 2;
@@ -179,7 +176,7 @@ public class Othello extends JPanel implements MouseListener {
 		count();
 	}
 
-	//mouseclicked
+	// mouseclicked
 	public void mouseClicked(MouseEvent arg0) {
 		int x, y, i = 0, j = 0;
 		x = arg0.getX();
@@ -214,9 +211,8 @@ public class Othello extends JPanel implements MouseListener {
 		return false;
 	}
 
-	/**
-	 * Mostrar la ayuda al jugador donde puede jugar
-	 */
+	// Mostrar la ayuda al jugador donde puede jugar
+
 	static void help() {
 		for (int i = 0; i < data.length; i++) {
 			for (int j = 0; j < data[i].length; j++) {
@@ -518,7 +514,7 @@ public class Othello extends JPanel implements MouseListener {
 					if (data[i][j - 2] == turn) {
 						for (int k = j - 1; k <= oJ; k++) {
 							data[i][k] = turn;
-							System.out.println("up-fillall" + i + " " + k);
+							System.out.println("arriba-fillall " + i + " " + k);
 						}
 						done = true;
 					} else if (data[i][j - 2] == notTurn) {
@@ -545,7 +541,7 @@ public class Othello extends JPanel implements MouseListener {
 					if (data[i + 2][j - 2] == turn) {
 						int m = i + 1;
 						for (int k = j - 1; k < oJ; k++) {
-							System.out.println("up-right" + m + " " + k);
+							System.out.println("DerechArriba" + m + " " + k);
 							data[m][k] = turn;
 							m--;
 						}
@@ -574,7 +570,7 @@ public class Othello extends JPanel implements MouseListener {
 					if (data[i + 2][j] == turn) {
 						for (int k = i + 1; k > oI; k--) {
 							data[k][j] = turn;
-							System.out.println("right" + k + " " + j);
+							System.out.println("Derecha" + k + " " + j);
 						}
 						done = true;
 					} else if (data[i + 2][j] == notTurn) {
@@ -601,7 +597,7 @@ public class Othello extends JPanel implements MouseListener {
 					if (data[i + 2][j + 2] == turn) {
 						int m = i + 1;
 						for (int k = j + 1; k > oJ; k--) {
-							System.out.println("right-down" + m + " " + k);
+							System.out.println("DerechAbajo " + m + " " + k);
 							data[m][k] = turn;
 							m--;
 						}
@@ -631,7 +627,7 @@ public class Othello extends JPanel implements MouseListener {
 					if (data[i][j + 2] == turn) {
 						for (int k = j + 1; k > oJ; k--) {
 							data[i][k] = turn;
-							System.out.println("down" + i + " " + k);
+							System.out.println("Abajo " + i + " " + k);
 						}
 						done = true;
 					} else if (data[i][j + 2] == notTurn) {
@@ -658,7 +654,7 @@ public class Othello extends JPanel implements MouseListener {
 					if (data[i - 2][j + 2] == turn) {
 						int m = i - 1;
 						for (int k = j + 1; k > oJ; k--) {
-							System.out.println("down-left" + m + " " + k);
+							System.out.println("Abajo-izquiera " + m + " " + k);
 							data[m][k] = turn;
 							m++;
 						}
@@ -688,7 +684,7 @@ public class Othello extends JPanel implements MouseListener {
 					if (data[i - 2][j] == turn) {
 						for (int k = i - 2; k < oI; k++) {
 							data[k][j] = turn;
-							System.out.println("down-left" + k + " " + j);
+							System.out.println("abajoIzquiera " + k + " " + j);
 						}
 						done = true;
 					} else if (data[i - 2][j] == notTurn) {
@@ -715,7 +711,7 @@ public class Othello extends JPanel implements MouseListener {
 					if (data[i - 2][j - 2] == turn) {
 						int m = i - 1;
 						for (int k = j - 1; k < oJ; k++) {
-							System.out.println("down" + m + " " + k);
+							System.out.println("abajo " + m + " " + k);
 							data[m][k] = turn;
 							m++;
 						}
@@ -737,7 +733,7 @@ public class Othello extends JPanel implements MouseListener {
 	}
 
 	/**
-	 * Contar cuantas piezas hay 
+	 * Contar cuantas piezas hay
 	 */
 	static void count() {
 		Negro = 0;

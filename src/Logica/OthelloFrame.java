@@ -7,7 +7,7 @@ public class OthelloFrame extends JFrame {
 
     public OthelloFrame() {
         OthelloBoard board = new OthelloBoard();
-        OthelloMenu menu = new OthelloMenu(board);
+        OthelloMenu menu = new OthelloMenu();
 
         setTitle("Othello");
         setLocationRelativeTo(null);
@@ -16,7 +16,10 @@ public class OthelloFrame extends JFrame {
         getContentPane().setBackground(new java.awt.Color(18, 199, 24));
 
         add(board);
-        setJMenuBar(menu);
+        setMenuBar(menu);
         pack();
+    }
+
+    private void setMenuBar(OthelloMenu menu) {
     }
 }

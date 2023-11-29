@@ -1,72 +1,42 @@
 package Logica;
 
-import javax.swing.JCheckBoxMenuItem;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
-public class OthelloMenu {
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> createAndShowGUI());
-    }
+public class OthelloMenu implements MouseListener {
 
-    private static void createAndShowGUI() {
-        JFrame frame = new JFrame("Othello Menu");
-        frame.setSize(400, 300);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		// TODO Auto-generated method stub
+		throw new UnsupportedOperationException("Unimplemented method 'mouseClicked'");
+	}
 
-        JMenuBar menuBar = new JMenuBar();
-        JMenu file = new JMenu("Opciones");
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
+		throw new UnsupportedOperationException("Unimplemented method 'mousePressed'");
+	}
 
-        JMenuItem newGame = new JMenuItem("Nuevo Juego");
-        JCheckBoxMenuItem help = new JCheckBoxMenuItem("Ayuda");
-        JMenuItem exitGame = new JMenuItem("Cerrar Juego");
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+		throw new UnsupportedOperationException("Unimplemented method 'mouseReleased'");
+	}
 
-        file.add(newGame);
-        file.add(help);
-        help.setSelected(true);
-        file.addSeparator();
-        file.add(exitGame);
-        menuBar.add(file);
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub
+		throw new UnsupportedOperationException("Unimplemented method 'mouseEntered'");
+	}
 
-        frame.setJMenuBar(menuBar);
-        frame.setVisible(true);
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
+		throw new UnsupportedOperationException("Unimplemented method 'mouseExited'");
+	}
 
-        // Lógica de ActionListener para cada elemento del menú
-        newGame.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // Lógica para iniciar un nuevo juego
-                // Puedes llamar a los métodos relevantes de tu clase Othello
-                // Ejemplo: Othello.startNewGame();
-                System.out.println("Nuevo Juego iniciado");
-            }
-        });
-
-        help.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // Lógica para la opción de ayuda
-                // Puedes llamar a los métodos relevantes de tu clase Othello
-                // Ejemplo: Othello.showHelp();
-                System.out.println("Ayuda seleccionada");
-            }
-        });
-
-        exitGame.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // Lógica para cerrar el juego
-                // Puedes llamar a los métodos relevantes de tu clase Othello
-                // Ejemplo: Othello.exitGame();
-                System.out.println("Juego cerrado");
-                System.exit(0);
-            }
-        });
-    }
 }
